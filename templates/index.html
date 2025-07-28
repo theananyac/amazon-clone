@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Amazon</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="nav-logo border">
+          <div class="logo" style="background-image: url('{{ url_for('static', filename='amazonlogo.png') }}')"></div>
+      </div>
+
+      <div class="nav-address border">
+         <p class="add-first">Deliver to</p>
+           <div class="add-icon">
+             <i class="fa-solid fa-location-dot"></i>
+             <p class="add-second">India</p>
+           </div>
+      </div>
+
+      <div class="nav-search">
+        <select class="search-select">
+          <option>All</option>
+        </select>
+        <input placeholder="Search Amazon" class="search-input">
+        <div class="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+
+      <div class="nav-signin border">
+        <p><span>Hello, sign in</span></p>
+        <p class="nav-second">Account & Lists</p>
+      </div>
+
+      <div class="nav-return border">
+        <p><span>Returns</span></p>
+        <p class="nav-second">& Orders</p>
+      </div>
+
+      <div class="nav-cart border">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-all">
+        <i class="fa-solid fa-bars"></i>
+        All
+      </div>
+      <div class="panel-ops">
+        <p>Today's Deals</p>
+        <p>Customer Service</p>
+        <p>Registry</p>
+        <p>Gift Cards</p>
+        <p>Sell</p>
+      </div>
+      <div class="panel-deals">
+        Shop deals in Electronics
+      </div>
+    </div>
+  </header>
+
+  <div class="hero-section" style="background-image: url('{{ url_for('static', filename='hero.jpg') }}')">
+     <div class="hero-msg">
+      <br>
+      <p><br>Amazon LIVE - Watch, Chat & Shop LIVE
+        <a>Click here to go to amazon.in</a>
+      </p>
+     </div> 
+  </div>
+
+  <div class="shop-section">
+    <div class="box">
+      <div class="box-content">
+        <h3>Water Containers</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box1.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Clocks</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box2.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Coolers</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box3.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Sandals</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box4.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="box-content">
+        <h3>Books</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box5.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Cute Stuffs</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box6.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Women's Sweaters</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box7.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+    <div class="box">
+      <div class="box-content">
+        <h3>Mirrors</h3>
+        <div class="box-img" style="background-image: url('{{ url_for('static', filename='box8.jpg') }}')"></div>
+        <p>See more</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-section">
+    <h1>Welcome to Amazon Clone</h1>
+
+    <form method="get" action="/search">
+        <input type="text" name="q" placeholder="Search for products..." value="{{ query if query else '' }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="product-list">
+        {% if products %}
+            {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                    <h2>{{ product.name }}</h2>
+                    <p>Price: {{ product.price }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-panel1">
+        Back to top
+    </div>
+
+    <div class="foot-panel2">
+      <ul>
+        <p>Get to know us</p>
+        <a>Careers</a>
+        <a>Blog</a>
+        <a>About Amazon</a>
+        <a>Investor Relations</a>
+        <a>Amazon Devices</a>
+        <a>Amazon Science</a>
+      </ul>
+      <ul>
+        <p>Connect with us</p>
+        <a>Facebook</a>
+        <a>Twitter</a>
+        <a>Instagram</a>
+      </ul>
+      <ul>
+        <p>Make money with us</p>
+        <a>Sell on Amazon</a>
+        <a>Sell under Amazon Accelerator/a>
+        <a>Supply to Amazon</a>
+        <a>Investor Relations</a>
+        <a>Become an Affiliate</a>
+        <a>Fulfilment by Amazon</a>
+        <a>Amazon Pay on Merchants</a>
+      </ul>
+      <ul>
+        <p>Let us help you</p>
+        <a>Your Account</a>
+        <a>Returns Centre</a>
+        <a>Recalls and Product Safety Alerts</a>
+        <a>100% Purchase Protection</a>
+        <a>Amazon App Download</a>
+        <a>Help</a>
+      </ul>
+    </div>
+
+    <div class="foot-panel3">
+       <div class="logo"></div>
+  </div>
+
+  <div class="foot-panel4">
+    <div class="pages">
+      <a>Conditions of use</a>
+      <a>Privacy Notice</a>
+      <a>Your Ads Privacy Choices</a>
+    </div>
+    <div class="copyright">
+      © 1996-2025, Amazon.com, Inc. or its affiliates
+    </div>
+  </div>
+
+  <script>
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+      })
+      .catch(error => console.error('Error fetching products:', error));
+</script>
+  </footer>
+</body>
+
+</html>
